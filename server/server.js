@@ -19,11 +19,10 @@ app.use(cookieParser());
 
 // ENABLE CORS ACCESS TO THE LOCALHOST:3000
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-    next();
-  });
-  
-  
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  next();
+});
+
 // GET BOOKS//
 app.get('/api/getBook', (req, res) => {
   let id = req.query.id;
@@ -91,10 +90,10 @@ app.post('/api/book', (req, res) => {
   const book = new Book(req.body);
 
   book.save((err, doc) => {
-    if (err) return res.status(400).send(err);
+    if (err) console.log(err);
     res.status(200).json({
       post: true,
-      bookId: doc._id
+     // bookId: doc._id
     });
   });
 });

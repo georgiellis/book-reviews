@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const bookSchema = mongoose.Schema(
   {
@@ -25,8 +25,8 @@ const bookSchema = mongoose.Schema(
       max: 5
     },
     price: {
-      type: String,
-      default: "n/a"
+      type: Number,
+      default: 0
     },
     OwnerID: {
       type: String,
