@@ -48,7 +48,7 @@ export function clearBookWithReviewer() {
 
 export function addBook(book) {
   console.log(book);
-  const request = axios.post('/api/book', book).then(response => response.data);
+  const request = axios.post('api/book', book).then(response => response.data);
   return {
     type: 'ADD_BOOK',
     payload: request
@@ -108,7 +108,7 @@ export function clearBook() {
 
 export function loginUser({ email, password }) {
   const request = axios
-    .post('/api/login', { email, password })
+    .post('api/login', { email, password })
     .then(response => response.data);
   return {
     type: 'USER_LOGIN',
@@ -117,7 +117,7 @@ export function loginUser({ email, password }) {
 }
 
 export function auth() {
-  const request = axios.get('/api/auth').then(response => response.data);
+  const request = axios.get('api/auth').then(response => response.data);
 
   return {
     type: 'USER_AUTH',
@@ -125,7 +125,7 @@ export function auth() {
   };
 }
 export function getUsers(){
-  const request=axios.get(`/api/users`)
+  const request=axios.get(`api/users`)
   .then(response=>response.data);
   return{
     type:'GET_USER',
@@ -133,7 +133,7 @@ export function getUsers(){
   }
 }
 export function RegisterUser(user,userList){
-  const request=axios.post(`/api/register`,user)
+  const request=axios.post(`api/register`,user)
   
   return(dispatch)=>
   request.then(({data})=>{

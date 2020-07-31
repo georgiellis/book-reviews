@@ -1,9 +1,10 @@
-const express = require('express');
+const express = require('express')
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const config = require('./config/config').get(process.env.NODE_ENV);
-const app = express();
+const app = express()
+const port = 3000
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
@@ -17,18 +18,13 @@ const { auth } = require('./middleware/auth');
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-
-app.use(express.static('client/build'))
-
+app.use(express.static('public'))
 
 // ENABLE CORS ACCESS TO THE LOCALHOST:3000
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   next();
 });
-
-
-
 
 // GET BOOKS//
 app.get('/api/getBook', (req, res) => {
@@ -92,6 +88,7 @@ app.get('/api/user_posts', (req, res) => {
     res.send(docs);
   });
 });
+
 // POST BOOKS//
 app.post('/api/book', (req, res) => {
   const book = new Book(req.body);
@@ -104,6 +101,7 @@ app.post('/api/book', (req, res) => {
     });
   });
 });
+
 //POST USERS//
 app.post('/api/register', (req, res) => {
   const user = new User(req.body);
@@ -161,12 +159,7 @@ app.delete('/api/delete_book', (req, res) => {
   });
 });
 
-//PRODUCTION
-if(process.env.NODE_ENV==='production'){
-    const path=require('path');
-    app.get('/*',(req,res)=>{
-      res.sendfile(path.resolve(__dirname,'../client','build', 'index.html'))
-    })
-}
-const port = process.env.PORT || 3001;
-app.listen(port, () => console.log(`server runing at port ${port}`));
+
+//app.get('/', (req, res) => res.send('Hello World!'))
+
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
