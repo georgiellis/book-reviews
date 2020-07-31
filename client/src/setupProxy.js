@@ -1,13 +1,14 @@
 const createProxyMiddleware = require('http-proxy-middleware');
 module.exports = function(app) {
   app.use(
-    '/api',
+    '/api/',
     createProxyMiddleware({
-      target: 'http://127.0.0.1:3000',
+      target: 'http://127.0.0.1:3001',
       changeOrigin: true,
       secure: false,
     })
   );
+  app.listen(3001);
 };
 
 
