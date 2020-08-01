@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const config = require('./config/config').get(process.env.NODE_ENV);
 const app = express()
-const port = 3000
+const port = 3001
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
